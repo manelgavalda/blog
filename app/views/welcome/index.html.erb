@@ -1,2 +1,5 @@
-<h1>Welcome!</h1>
-<%= link_to "Inicio", "/welcome/index", method: :post  %>
+<% if user_signed_in? %>
+  <h1>Bienvenido <%= current_user.email %></h1>
+<% else %>
+  <h1>No estas logejat taloset</h1>
+<% end %>
