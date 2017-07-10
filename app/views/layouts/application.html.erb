@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
   </head>
 
   <body>
@@ -17,7 +16,7 @@
           <h1 class="no-margin" id="logo">Blog Manel</h1>
         </li>
         <li class="col-md">
-          <%= link_to "Inicio", root_path %>
+          <%= link_to 'Inicio', root_path %>
         </li>
         <li class="col-md">
           Diseño
@@ -28,9 +27,18 @@
         <li class="col-md">
           Tecnología
         </li>
+        <% if user_signed_in? %>
+          <li class="col-md">
+            <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+          </li>
+        <% end %>
       </ul>
     </nav>
   </header>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
     <%= yield %>
+
   </body>
 </html>
