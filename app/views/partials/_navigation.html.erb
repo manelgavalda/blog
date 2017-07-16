@@ -2,33 +2,28 @@
   <nav class="be-red white large-padding">
     <ul class="no-list row center-xs middle-xs">
       <li class="col-md">
-        <h1 class="no-margin" id="logo">Blog Manel</h1>
+        <h1 class="no-margin" id="logo"><%= link_to 'Blog Manel', root_path %></h1>
       </li>
       <li class="col-md">
-        <%= link_to 'Inicio', root_path %>
+        <%= link_to 'Articles', articles_path %>
       </li>
-      <li class="col-md">
-        Diseño
-      </li>
-      <li class="col-md">
-        Programación
-      </li>
-      <li class="col-md">
-        Tecnología
-      </li>
+      <% @categories.each do |category| %>
+        <li class="col-md">
+          <%= link_to category.name, category %>
+        </li>
+      <% end %>
       <% if user_signed_in? %>
           <li class="col-md">
-            <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
           </li>
       <% else %>
           <li class="col-md">
-            <%= link_to 'Iniciar sesión', new_user_session_path %>
+            <%= link_to 'Login', new_user_session_path %>
           </li>
           <li class="col-md">
-            <%= link_to 'Crear cuenta', new_user_registration_path %>
+            <%= link_to 'Register', new_user_registration_path %>
           </li>
-          <% end %>
-
+      <% end %>
     </ul>
   </nav>
 </header>
