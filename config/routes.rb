@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :categories
   resources :articles do
     resources :comments, only: [:create, :destroy, :update]

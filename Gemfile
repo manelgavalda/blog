@@ -34,6 +34,10 @@ gem 'devise'
 gem 'paperclip'
 gem 'aasm'
 gem 'will_paginate'
+gem 'bootstrap3-rails'
+gem 'bootsy'
+gem 'jquery-rails'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
