@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
-  include AASM
 
+  include AASM
   include Bootsy::Container
 
   belongs_to :user
