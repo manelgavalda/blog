@@ -11,7 +11,9 @@
   <body>
 
   <%= render 'partials/navigation' %>
-
+<div style="<%= "display:none;" if notice.nil? and alert.nil? %>">
+  <%= notice %> <%= alert %>
+</div>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
