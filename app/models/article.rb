@@ -12,12 +12,12 @@ class Article < ApplicationRecord
   validates :body, presence: true, length: {minimum: 20}
   before_save :set_visits_count
   after_create :save_categories
+  after_create :send_mail
 
   has_attached_file :cover, styles: { medium: "1280x720", thumb:"800x600" }
   validates_attachment_content_type :cover, content_type:  /\Aimage\/.*\Z/
 
   scope :publicados, ->{where(state: 'published')}
-
   scope :ultimos, ->{ order("created_at DESC") }
 
   def categories=(value)
@@ -35,13 +35,16 @@ class Article < ApplicationRecord
     event :publish do
       transitions from: :in_draft, to: :published
     end
-
     event :unpublish do
       transitions from: :published, to: :in_draft
     end
   end
 
   private
+
+  def send_mail
+    ArticleMailer.new_article(self).deliver_later
+  end
 
   def save_categories
     unless @categories.nil?
